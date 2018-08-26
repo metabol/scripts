@@ -1,0 +1,23 @@
+#!/usr/bin/env bash
+# This is a wrapper for the "actual" Meld executable
+# It is designed to facilitate launching Meld from a command line
+
+
+
+
+
+#Make a clean working directory
+mkdir -p work/crap
+#Get in to that directory
+cd work/crap
+#Clone git head
+git clone https://git.gnome.org/browse/meld
+#Get in to that project directory
+cd meld
+#Install dependencies
+sudo apt-get install intltool itstool gir1.2-gtksource-3.0 libxml2-utils
+#Install meld
+sudo python setup.py install
+
+# Launch actual Meld executable
+nohup /usr/bin/meld "$@" &> /dev/null &
